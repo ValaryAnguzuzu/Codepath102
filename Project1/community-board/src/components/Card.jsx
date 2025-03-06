@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ subject, tutor, time, location, link }) => {
+const Card = ({ subject, tutor, time, location, link, image }) => {
   console.log("✅ Card received props:", subject, tutor, time, location, link);
 
   // Ensure all props are properly accessed
