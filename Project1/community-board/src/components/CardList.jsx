@@ -89,19 +89,28 @@ const studyGroups = [
   },
 ];
 
-const CardList = () => {
+const CardList = ({ searchQuery }) => {
+  const filteredGroups = studyGroups.filter(
+    (group) =>
+      group.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      group.tutor.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="card-list">
-      {studyGroups.map((group, index) => (
-        <Card
-          key={index}
-          subject={group.subject}
-          tutor={group.tutor}
-          time={group.time}
-          location={group.location}
-          link={group.link}
-        />
-      ))}
+      {filteredGroups.length > 0 ? (
+        filteredGroups.map((group, index) => (
+          <Card
+            key={index}
+            subject={group.subject}
+            tutor={group.tutor}
+            time={group.time}
+            location={group.location}
+            link={group.link}
+          />
+        ))
+      ) : (
+        <p>No study groups found.</p>
+      )}
     </div>
   );
 };
