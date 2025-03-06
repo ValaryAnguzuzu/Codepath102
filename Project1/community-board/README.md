@@ -27,7 +27,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGx6YnFyYXdlbW03ZTBpdW1ib2h5amc0cXU1bmwwaXo5eHh0cng3ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kLzn1cTTDQzkmSPVAQ/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with   
 [Kap](https://getkap.co/) for macOS
