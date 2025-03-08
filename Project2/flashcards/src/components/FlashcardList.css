@@ -1,0 +1,29 @@
+.flashcard-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Center everything */
+  justify-content: center;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;  /* Center button */
+  margin-top: 20px;
+}
+
+.next-btn {
+  background: #6c63ff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+  transition: background 0.3s ease-in-out;
+}
+
+.next-btn:hover {
+  background: rgb(199, 26, 199);
+}
