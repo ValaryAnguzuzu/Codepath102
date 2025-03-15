@@ -11,7 +11,9 @@
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, background-color 0.5s ease-in-out;
-  margin-top: 20px; /* Add spacing */
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
 }
 
 .flashcard:hover {
@@ -20,8 +22,10 @@
 
 .question {
   color: black;
+  font-size: 1.5rem;
 }
 
 .answer {
-  color: #4b0082;
+  color: #0056b3;
+  font-size: 1.5rem;
 }

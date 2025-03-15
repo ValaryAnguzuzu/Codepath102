@@ -53,18 +53,9 @@ const flashcardsData = [
   { question: "What is amortized analysis in data structures?", answer: "A technique to average the time complexity of operations over a sequence of operations, commonly used in dynamic array resizing." }
 ];
 
-// Function to get a random index different from the current one
-const getRandomIndex = (currentIndex, length) => {
-  let newIndex;
-  do {
-    newIndex = Math.floor(Math.random() * length);
-  } while (newIndex === currentIndex);
-  return newIndex;
-};
-
 // Function to get a random background color for the card
 const getRandomColor = () => {
-  const colors = ["#ffebcd", "#f5deb3", "#ffe4b5", "#fafad2", "#d3ffce"];
+  const colors = ["#ffddcc", "#ffb3b3", "#d4a5a5", "#f9c5d1", "#c2e0c6"];
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
@@ -72,12 +63,53 @@ const FlashcardList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [bgColor, setBgColor] = useState(getRandomColor());
+  const [userInput, setUserInput] = useState("");
+  const [feedback, setFeedback] = useState("");
 
-  // Function to select a random flashcard
+  // Function to go to the next flashcard
   const nextFlashcard = () => {
-    setCurrentIndex((prevIndex) => getRandomIndex(prevIndex, flashcardsData.length));
-    setIsFlipped(false); // Reset flip state
-    setBgColor(getRandomColor()); // Change card color
+    if (currentIndex < flashcardsData.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+    resetState();
+  };
+
+  // Function to go to the previous flashcard
+  const prevFlashcard = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(flashcardsData.length - 1);
+    }
+    resetState();
+  };
+
+  // Function to shuffle flashcards randomly
+  const shuffleFlashcards = () => {
+    setCurrentIndex(Math.floor(Math.random() * flashcardsData.length));
+    resetState();
+  };
+
+  // Function to check the user's answer
+  const checkAnswer = () => {
+    if (
+      userInput.trim().toLowerCase() ===
+      flashcardsData[currentIndex].answer.toLowerCase()
+    ) {
+      setFeedback("Correct!");
+    } else {
+      setFeedback("Incorrect! Try again.");
+    }
+  };
+
+  // Function to reset input and feedback
+  const resetState = () => {
+    setIsFlipped(false);
+    setBgColor(getRandomColor());
+    setUserInput("");
+    setFeedback("");
   };
 
   return (
@@ -92,8 +124,37 @@ const FlashcardList = () => {
         bgColor={bgColor}
       />
 
+      {/* User Input Section */}
+      <div className="user-input-section">
+        <input
+          type="text"
+          className="answer-input"
+          placeholder="Enter your answer"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+        />
+        <button className="submit-btn" onClick={checkAnswer}>
+          Submit
+        </button>
+        <button className="flip-btn" onClick={() => setIsFlipped(!isFlipped)}>
+          Flip Card
+        </button>
+      </div>
+
+      {/* Feedback */}
+      {feedback && <p className="feedback">{feedback}</p>}
+
+      {/* Buttons */}
       <div className="button-container">
-        <button className="next-btn" onClick={nextFlashcard}>Next</button>
+        <button className="prev-btn" onClick={prevFlashcard}>
+          Previous
+        </button>
+        <button className="next-btn" onClick={nextFlashcard}>
+          Next
+        </button>
+        <button className="shuffle-btn" onClick={shuffleFlashcards}>
+          Shuffle
+        </button>
       </div>
     </div>
   );
